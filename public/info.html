@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>危险的网站</title>
+</head>
+
+<body>
+  <h1>危险的网站</h1>
+  <h2>已经登录 可以转账</h2>
+  <h2>这时候这个仿冒的网站就可以篡改转账金额和收款人</h2>
+  <h3 id="count">余额: 0</h3>
+  <form id="form">
+    <div>
+      <label for="amount">金额</label>
+      <input type="text" name="amount" id="amount" />
+    </div>
+    <button type="submit">转账</button>
+  </form>
+
+  <script>
+    const countDom = document.querySelector("#count");
+    const formDom = document.querySelector("#form");
+    formDom.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const formData = new FormData(formDom);
+      const amount = formData.get('amount');
+      fetch("/transfer", { method: "post", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ amount }) })
+      .then(res => res.json()).then(res => {
+        if (res.success) {
+          window.location.reload()
+        }
+      })
+    })
+
+    fetch('/is-login', { method: "POST" }).then(res => res.json()).then(res => {
+      if (res.isLogin) {
+        countDom.textContent = `余额: ${res.count}`
+      }
+    })
+  </script>
+</body>
+
+</html>

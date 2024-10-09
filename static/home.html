@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正常的网站</title>
+</head>
+
+<body>
+  <h1>正常的网站</h1>
+  <button id="loginBtn">登录</button>
+  <script>
+    const loginBtn = document.querySelector("#loginBtn");
+
+    fetch('/is-login', { method: "POST" }).then(res => res.json()).then(res => {
+      if (res.isLogin) {
+        sessionStorage.setItem("isLogin", "true")
+        loginBtn.textContent = "已经登录，跳转个人信息页面"
+      } else {
+        sessionStorage.removeItem("isLogin");
+      }
+    })
+
+    loginBtn.addEventListener("click", () => {
+      const isLogin = sessionStorage.getItem("isLogin");
+      window.location.href = isLogin ? "/static/info" : "/static/login"
+    })
+  </script>
+</body>
+
+</html>

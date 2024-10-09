@@ -1,0 +1,10 @@
+{
+  "restartable": "rs",
+  "verbose": true,
+  "watch": [],
+  "ignore": [],
+  "ext": "js json",
+  "exec": "cross-env DEBUG=myApp",
+  "delay": "1000",
+  "execMap": {}
+}

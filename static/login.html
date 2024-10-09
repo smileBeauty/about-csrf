@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正常的网站</title>
+</head>
+
+<body>
+  <h1>正常的网站</h1>
+  <form id="form">
+    <div>
+      <label for="username">用户名</label>
+      <input type="text" name="username" id="username" />
+    </div>
+    <div>
+      <label for="password">密码</label>
+      <input type="password" name="password" id="password" />
+    </div>
+    <div>
+      <button type="submit">提交</button>
+    </div>
+  </form>
+  <script>
+    const formDom = document.querySelector("#form");
+    formDom.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const formData = new FormData(formDom);
+      const username = formData.get('username');
+      const password = formData.get('password');
+      fetch("/login", { method: "post", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ username, password }) }).then(res => res.json()).then(res => {
+        console.log(res);
+        if (res.success) {
+          window.location.href = "/static/home"
+        }
+      });
+    })
+  </script>
+</body>
+
+</html>

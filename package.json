@@ -1,0 +1,41 @@
+{
+  "name": "about-csrf",
+  "version": "0.0.1",
+  "description": "Cross-Site Request Forgery CSRF XSRF 跨站请求伪造攻击",
+  "main": "normal.js",
+  "scripts": {
+    "normal": "nodemon node normal.js",
+    "hacker": "nodemon node hacker.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smileBeauty/about-csrf.git"
+  },
+  "keywords": [
+    "CSRF",
+    "XSRF",
+    "Cross-Site Request Forgery",
+    "跨站请求伪造攻击"
+  ],
+  "author": "smileBeauty",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smileBeauty/about-csrf/issues"
+  },
+  "homepage": "https://github.com/smileBeauty/about-csrf#readme",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "cookie-session": "^2.1.0",
+    "debug": "^4.3.7",
+    "express": "^4.21.0",
+    "http-proxy-middleware": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/express": "^5.0.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.7"
+  }
+}
